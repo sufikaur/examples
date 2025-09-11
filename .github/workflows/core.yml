@@ -50,8 +50,8 @@ jobs:
     # OS and/or Python version don't make a difference, so we choose ubuntu and 3.10 for performance
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Install Black
@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       - name: Run Spell Checker
         uses: crate-ci/typos@master
 
@@ -88,13 +88,13 @@ jobs:
           - win64
         include:
           - os: linux
-            runner-image: ubuntu-20.04
+            runner-image: ubuntu-22.04
           - os: win64
             runner-image: windows-2022
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Set up Conda environment
-        uses: conda-incubator/setup-miniconda@v2.2.0
+        uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: ${{ env.IDAES_CONDA_ENV_NAME_DEV }}
           python-version: ${{ matrix.python-version }}
